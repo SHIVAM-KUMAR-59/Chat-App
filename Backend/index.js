@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import { connectDB } from './config/configDB.js'
 import userRoutes from './Routes/user-routes.js'
+import chatRoutes from './Routes/chat-routes.js'
 
 dotenv.config()
 const app = express()
@@ -20,6 +21,7 @@ connectDB(MONGODB_URI)
 
 // Using the routes
 app.use(userRoutes)
+app.use(chatRoutes)
 
 app.get('/', (req, res) => {
   res.send('Hello World')

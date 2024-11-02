@@ -9,6 +9,12 @@ const ChatSchema = new mongoose.Schema(
         required: true, // For both one-on-one and group, participants are required
       },
     ],
+    participantsNames: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     isGroupChat: {
       type: Boolean,
       default: false, // Default is one-to-one chat; set to true for group chat
