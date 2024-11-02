@@ -1,72 +1,133 @@
-import ChatSchema from '../Schemas/ChatSchema.js'
-import UserSchema from '../Schemas/UserSchema.js'
+import ChatHelpers from '../Helpers/helpers.js'
 
+/**
+ * Controller class for handling chat-related operations
+ */
 class ChatController {
+  /**
+   * Create a private chat between two users
+   */
   static createPrivateChat = async (req, res) => {
     try {
-      const { userId } = req.body
-      if (!userId) {
-        return res.status(400).json({ message: 'User ID is required' })
-      }
-
-      const otherUserId = userId
+      const { userId: otherUserId } = req.body
       const currentUserId = req.user.id
-      console.log('Other User: ', otherUserId)
-      console.log('Current User: ', currentUserId)
 
-      // Fetch details of the other user
-      const otherUser = await UserSchema.findById(otherUserId)
-      if (!otherUser) {
-        return res.status(404).send({
-          status: 'failure',
-          message: 'Other User Not Found',
-        })
+      // Validate input
+      if (!otherUserId) {
+        return ChatHelpers.sendResponse(
+          res,
+          400,
+          'failure',
+          'User ID is required',
+        )
       }
 
-      // Fetch details of the current user
-      const currentUser = await UserSchema.findById(currentUserId)
-      if (!currentUser) {
-        return res.status(404).send({
-          status: 'failure',
-          message: 'Current User Not Found',
-        })
-      }
+      // Get both users' details
+      const [currentUser, otherUser] = await Promise.all([
+        ChatHelpers.getUserById(currentUserId, 'Current User'),
+        ChatHelpers.getUserById(otherUserId, 'Other User'),
+      ])
 
-      console.log(currentUser)
-      console.log(otherUser)
-
-      // Check if chat already exists
-      const existingChat = await ChatSchema.findOne({
-        participants: { $all: [currentUserId, otherUserId] },
-      })
+      // Check for existing chat
+      const existingChat = await ChatHelpers.findExistingChat(
+        [currentUserId, otherUserId],
+        false,
+      )
 
       if (existingChat) {
-        return res.status(200).send({
-          status: 'success',
-          message: 'Chat already exists',
-          data: existingChat,
-        })
+        return ChatHelpers.sendResponse(
+          res,
+          200,
+          'success',
+          'Chat already exists',
+          existingChat,
+        )
       }
 
-      //   Create a new chat
-      const newChat = new ChatSchema({
+      // Create new chat
+      const newChat = await ChatHelpers.createChat({
         participants: [currentUserId, otherUserId],
         participantsNames: [currentUser.displayName, otherUser.displayName],
       })
 
-      await newChat.save()
-
-      res.status(200).send({
-        status: 'success',
-        message: 'Chat created successfully',
-        data: newChat,
-      })
+      return ChatHelpers.sendResponse(
+        res,
+        201,
+        'success',
+        'Chat created successfully',
+        newChat,
+      )
     } catch (error) {
-      return res.status(500).send({
-        status: 'failure',
-        message: error.message,
-        error: error,
+      return ChatHelpers.sendResponse(res, 500, 'failure', error.message)
+    }
+  }
+
+  /**
+   * Create a group chat
+   */
+  static createGroupChat = async (req, res) => {
+    try {
+      const { name, bio, participants } = req.body
+      const userId = req.user.id
+
+      // Validate input
+      if (!name || !participants) {
+        return ChatHelpers.sendResponse(
+          res,
+          400,
+          'failure',
+          'Name and participants are required',
+        )
+      }
+
+      const allParticipants = [...participants, userId]
+      if (allParticipants.length < 3) {
+        return ChatHelpers.sendResponse(
+          res,
+          400,
+          'failure',
+          'At least three participants are required',
+        )
+      }
+
+      // Check if group already exists with same name and participants
+      const existingGroup = await ChatHelpers.findExistingChat(
+        allParticipants,
+        true,
+        name,
+      )
+
+      if (existingGroup) {
+        return ChatHelpers.sendResponse(
+          res,
+          200,
+          'success',
+          'Group chat already exists',
+          existingGroup,
+        )
+      }
+
+      // Get participant names and create group
+      const allParticipantNames = await ChatHelpers.getParticipantNames(
+        allParticipants,
+      )
+      const newChatGroup = await ChatHelpers.createChat({
+        participants: allParticipants,
+        isGroupChat: true,
+        groupName: name,
+        bio: bio,
+        participantsNames: allParticipantNames,
       })
+
+      return ChatHelpers.sendResponse(
+        res,
+        201,
+        'success',
+        'Group chat created successfully',
+        newChatGroup,
+      )
+    } catch (error) {
+      return ChatHelpers.sendResponse(res, 500, 'failure', error.message)
     }
   }
 }
