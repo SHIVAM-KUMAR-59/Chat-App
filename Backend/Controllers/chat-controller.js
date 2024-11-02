@@ -67,7 +67,7 @@ class ChatController {
    */
   static createGroupChat = async (req, res) => {
     try {
-      const { name, bio, participants } = req.body
+      const { name, bio, participants, profileImage } = req.body
       const userId = req.user.id
 
       // Validate input
@@ -117,6 +117,7 @@ class ChatController {
         groupName: name,
         bio: bio,
         participantsNames: allParticipantNames,
+        profileImage: profileImage,
       })
 
       return ChatHelpers.sendResponse(

@@ -27,6 +27,10 @@ const ChatSchema = new mongoose.Schema(
       type: String,
       default: null, // Only needed for group chats
     },
+    profileImage: {
+      type: String,
+      default: null, // Only needed for group chats
+    },
   },
   { timestamps: true },
 )
