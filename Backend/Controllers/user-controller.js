@@ -240,6 +240,34 @@ class UserController {
       })
     }
   }
+
+  // Method to delete a user from the database
+  static deleteUser = async (req, res) => {
+    const id = req.user._id.toString()
+
+    try {
+      // Find the user and delete it
+      const user = await UserSchema.findByIdAndDelete(id)
+      if (!user) {
+        return res.status(404).json({
+          status: 'failed',
+          message: 'User not found',
+        })
+      }
+      // Successful response
+      res.status(200).json({
+        status: 'success',
+        message: 'User deleted successfully',
+      })
+    } catch (error) {
+      // Handle any errors that occur during the deletion
+      return res.status(500).json({
+        status: 'failed',
+        message: 'Error deleting user',
+        error: error.message,
+      })
+    }
+  }
 }
 
 export default UserController

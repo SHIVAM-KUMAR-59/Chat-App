@@ -41,4 +41,7 @@ route.patch(
 // Patch Route to change any field except password
 route.patch('/api/user/:username', verifyToken, UserController.updateUser)
 
+// Delete Route to delete the user from the database
+route.delete('/api/user/:username', verifyToken, UserController.deleteUser)
+
 export default route

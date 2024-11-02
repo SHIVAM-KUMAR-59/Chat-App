@@ -179,12 +179,12 @@ export const verifyToken = async (req, res, next) => {
     // Find the user in the database based on the provided username
     const user = await UserSchema.findOne({ username: username })
 
-    // Check if the user's account was deleted
+    // Check if the user's account was deactivated
     if (user.isDeactivated) {
       return res.status(401).send({
         status: 'failed',
-        message: 'You account was deleted',
-      }) // Return an error if the user has been deleted
+        message: 'You account was deactivated',
+      }) // Return an error if the user has been deactivated
     }
 
     // Attach the user object to the request object for access in the next middleware
@@ -197,6 +197,7 @@ export const verifyToken = async (req, res, next) => {
     return res.status(500).json({
       status: 'failed',
       message: 'Error verifying token',
+      data: error.message,
     })
   }
 }
