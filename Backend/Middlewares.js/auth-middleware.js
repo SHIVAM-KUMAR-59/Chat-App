@@ -34,7 +34,7 @@ export const checkDuplicateUser = async (req, res, next) => {
   const user = await UserSchema.findOne({ $or: [{ username }, { email }] })
 
   // If a user is found, return an error response
-  if (user) {
+  if (user && !user.isDeleted) {
     return res
       .status(400)
       .json({ status: 'failed', message: 'Username or email already exists' })
@@ -54,7 +54,7 @@ export const findUser = async (req, res, next) => {
     const user = await UserSchema.findOne({ username: username })
 
     // If no user is found, return a 404 response
-    if (!user) {
+    if (!user || !user.isDeleted) {
       return res
         .status(404)
         .json({ status: 'failed', message: 'User not found' })
@@ -160,6 +160,14 @@ export const verifyToken = async (req, res, next) => {
     const user = await UserSchema.findOne({ username: username }).select(
       '-password',
     )
+
+    // Check if the user's account was deleted
+    if (user.isDeleted) {
+      return res.status(401).send({
+        status: 'failed',
+        message: 'You account was deleted',
+      }) // Return an error if the user has been deleted
+    }
 
     // Attach the user object to the request object for access in the next middleware
     req.user = user
