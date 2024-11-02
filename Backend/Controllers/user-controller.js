@@ -180,6 +180,66 @@ class UserController {
       })
     }
   }
+
+  // Method to change any field except password
+  static updateUser = async (req, res) => {
+    // Destructure the data from the request body
+    const { displayName, email, bio, profileImage } = req.body
+
+    const id = req.user._id.toString() // Get the user ID from the request
+    console.log(id)
+
+    // Check if any data is provided
+    if (!displayName && !email && !bio && !profileImage) {
+      return res.status(400).json({
+        status: 'failed',
+        message: 'Enter at least one field.',
+      })
+    }
+
+    try {
+      // Find the user and update the specified fields
+      const user = await UserSchema.findByIdAndUpdate(
+        id, // Find user by user id directly
+        {
+          $set: {
+            // Fields to update
+            displayName,
+            email,
+            bio,
+            profileImage,
+          },
+        },
+        {
+          // Options for the update operation
+          new: true, // Return the updated document
+          runValidators: true, // Run validation on the update
+        },
+      )
+
+      // Check if the user was found and updated
+      if (!user) {
+        return res.status(404).json({
+          status: 'failed',
+          message: 'User not found',
+        })
+      }
+
+      // Successful response
+      res.status(200).json({
+        status: 'success',
+        message: 'User updated successfully',
+        user, // Send the updated user information back
+      })
+    } catch (error) {
+      // Handle any errors that occur during the update
+      return res.status(500).json({
+        status: 'failed',
+        message: 'Error updating user',
+        error: error.message,
+      })
+    }
+  }
 }
 
 export default UserController

@@ -163,12 +163,18 @@ export const verifyToken = async (req, res, next) => {
     })
   }
 
+  // Extract the username from the route parameters
+  const { username } = req.params
+  if (!username) {
+    return res.status(401).send({
+      status: 'failed',
+      message: 'Username required',
+    })
+  }
+
   try {
     // Verify the token using the secret key stored in environment variables
     jwt.verify(token, process.env.JWT_SECRET_KEY)
-
-    // Extract the username from the route parameters
-    const { username } = req.params
 
     // Find the user in the database based on the provided username
     const user = await UserSchema.findOne({ username: username })

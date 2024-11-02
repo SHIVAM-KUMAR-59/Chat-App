@@ -38,4 +38,7 @@ route.patch(
   UserController.toggleUserActivation,
 )
 
+// Patch Route to change any field except password
+route.patch('/api/user/:username', verifyToken, UserController.updateUser)
+
 export default route
