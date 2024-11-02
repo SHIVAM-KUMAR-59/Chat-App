@@ -32,4 +32,10 @@ route.post(
 // Get User Route
 route.get('/api/user/:username', verifyToken, UserController.getUser)
 
+// Soft Delete or Deactivate a user
+route.patch(
+  '/api/user/:username/deactivate',
+  UserController.toggleUserActivation,
+)
+
 export default route

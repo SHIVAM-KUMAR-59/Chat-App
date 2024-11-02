@@ -1,5 +1,6 @@
 import UserSchema from '../Schemas/UserSchema.js'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 class UserController {
   // Method to register a new user
@@ -112,7 +113,73 @@ class UserController {
     })
   }
 
-  // Method to soft delete a user or deactivate
+  // Method to Toggle between user's activation and deactivation
+  static toggleUserActivation = async (req, res) => {
+    const { username } = req.params
+
+    const { password } = req.body
+
+    if (!username) {
+      return res.status(404).send({
+        status: 'failed',
+        message: 'Username required!', // Message indicating user not found
+      })
+    }
+
+    if (!password) {
+      return res.status(404).send({
+        status: 'failed',
+        message: 'Password required!', // Message indicating password not found
+      })
+    }
+
+    try {
+      // Find the user by username
+      const user = await UserSchema.findOne({ username: username })
+
+      // If user is not found, send a 404 response
+      if (!user) {
+        return res.status(404).json({
+          status: 'failed',
+          message: 'User not found',
+        })
+      }
+
+      const isValidPassword = await bcrypt.compare(password, user.password)
+      if (!isValidPassword) {
+        return res.status(401).json({
+          status: 'failed',
+          message: 'Invalid password',
+        })
+      }
+
+      // Toggle the isDeactivated field
+      const updatedUser = await UserSchema.findOneAndUpdate(
+        { username: user.username },
+        { isDeactivated: !user.isDeactivated }, // Toggle the isDeactivated state
+        {
+          new: true, // Return the updated document
+          runValidators: true, // Run validation on the update
+        },
+      )
+
+      // Successful response
+      res.status(200).json({
+        status: 'success',
+        message: updatedUser.isDeactivated
+          ? 'User deactivated successfully'
+          : 'User activated successfully',
+        user: updatedUser,
+      })
+    } catch (error) {
+      // Handle any errors
+      res.status(500).json({
+        status: 'error',
+        message: 'Error toggling user activation',
+        error,
+      })
+    }
+  }
 }
 
 export default UserController

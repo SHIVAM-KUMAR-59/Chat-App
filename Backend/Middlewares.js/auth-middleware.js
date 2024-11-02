@@ -49,12 +49,18 @@ export const findUser = async (req, res, next) => {
   // Destructure username from the request body
   const { username } = req.body
 
+  if (!username) {
+    return res
+      .status(400)
+      .json({ status: 'failed', message: 'Please provide a username' })
+  }
+
   try {
     // Search for a user with the provided username
     const user = await UserSchema.findOne({ username: username })
 
     // If no user is found, return a 404 response
-    if (!user || !user.isDeactivated) {
+    if (!user || user.isDeactivated) {
       return res
         .status(404)
         .json({ status: 'failed', message: 'User not found' })
@@ -103,6 +109,12 @@ export const verifyPassword = async (req, res, next) => {
   // Destructure password from the request body
   const { password } = req.body
 
+  if (!password) {
+    return res
+      .status(400)
+      .json({ status: 'failed', message: 'Password is required' })
+  }
+
   try {
     // Compare the provided password with the stored hashed password
     const verifyPassword = await bcrypt.compare(password, req.user.password)
@@ -119,6 +131,7 @@ export const verifyPassword = async (req, res, next) => {
     next()
   } catch (error) {
     // Handle any errors that occur during password verification
+    console.log(error.message)
     return res
       .status(500)
       .json({ status: 'failed', message: 'Error verifying password', error })
@@ -140,6 +153,7 @@ export const verifyToken = async (req, res, next) => {
   }
 
   const token = header
+  console.log(token)
 
   // Check if the token was successfully extracted from the header
   if (!token) {
@@ -157,9 +171,7 @@ export const verifyToken = async (req, res, next) => {
     const { username } = req.params
 
     // Find the user in the database based on the provided username
-    const user = await UserSchema.findOne({ username: username }).select(
-      '-password',
-    )
+    const user = await UserSchema.findOne({ username: username })
 
     // Check if the user's account was deleted
     if (user.isDeactivated) {
