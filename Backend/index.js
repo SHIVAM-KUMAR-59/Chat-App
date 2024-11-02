@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
 import { connectDB } from './config/configDB.js'
 import User from './Schemas/UserSchema.js'
 
@@ -7,6 +8,9 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 8000
 const MONGODB_URI = process.env.MONGODB_URI
+
+// Enabling CORS
+app.use(cors())
 
 // Connect with the Database
 connectDB(MONGODB_URI)
