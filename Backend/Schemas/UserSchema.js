@@ -20,6 +20,10 @@ const User = new mongoose.Schema(
       type: String,
       required: true,
     },
+    bio: {
+      type: String,
+      required: false,
+    },
     profileImage: {
       type: String,
       default: '',
