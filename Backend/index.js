@@ -18,6 +18,7 @@ app.use(express.json())
 // Connect with the Database
 connectDB(MONGODB_URI)
 
+// Using the routes
 app.use(userRoutes)
 
 app.get('/', (req, res) => {
