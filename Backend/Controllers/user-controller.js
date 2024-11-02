@@ -111,6 +111,8 @@ class UserController {
       },
     })
   }
+
+  // Method to soft delete a user or deactivate
 }
 
 export default UserController

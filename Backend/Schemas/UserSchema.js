@@ -29,7 +29,7 @@ const User = new mongoose.Schema(
       type: String,
       default: '',
     },
-    isDeleted: {
+    isDeactivated: {
       type: Boolean,
       default: false,
     },

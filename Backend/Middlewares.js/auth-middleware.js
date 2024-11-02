@@ -33,8 +33,8 @@ export const checkDuplicateUser = async (req, res, next) => {
   // Search for a user with the same username or email
   const user = await UserSchema.findOne({ $or: [{ username }, { email }] })
 
-  // If a user is found, return an error response
-  if (user && !user.isDeleted) {
+  // If a user is found or is deactivated, return an error response
+  if (user && !user.isDeactivated) {
     return res
       .status(400)
       .json({ status: 'failed', message: 'Username or email already exists' })
@@ -54,7 +54,7 @@ export const findUser = async (req, res, next) => {
     const user = await UserSchema.findOne({ username: username })
 
     // If no user is found, return a 404 response
-    if (!user || !user.isDeleted) {
+    if (!user || !user.isDeactivated) {
       return res
         .status(404)
         .json({ status: 'failed', message: 'User not found' })
@@ -162,7 +162,7 @@ export const verifyToken = async (req, res, next) => {
     )
 
     // Check if the user's account was deleted
-    if (user.isDeleted) {
+    if (user.isDeactivated) {
       return res.status(401).send({
         status: 'failed',
         message: 'You account was deleted',

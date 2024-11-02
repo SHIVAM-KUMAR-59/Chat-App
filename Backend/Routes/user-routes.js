@@ -13,7 +13,7 @@ const route = Router()
 
 // Register User Route
 route.post(
-  '/api/user/register',
+  '/api/auth/register',
   checkDetails,
   checkDuplicateUser,
   generatePassword,
@@ -22,7 +22,7 @@ route.post(
 
 // Login User Route
 route.post(
-  '/api/user/login',
+  '/api/auth/login',
   checkDetails,
   findUser,
   verifyPassword,
