@@ -29,7 +29,10 @@ route.post(
   UserController.loginUser,
 )
 
-// Get User Route
+// Get all Users Route
+route.get('/api/user', UserController.getAllUsers)
+
+// Get a particular User Route
 route.get('/api/user/:username', verifyToken, UserController.getUser)
 
 // Toggle activate and deactivate user

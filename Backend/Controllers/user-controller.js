@@ -95,6 +95,28 @@ class UserController {
     }
   }
 
+  // Method to get all the users
+  static getAllUsers = async (req, res) => {
+    try {
+      // Find all users in the database
+      const users = await UserSchema.find().select('-password')
+      // Send a successful response with the list of users
+      return res.status(200).send({
+        status: 'success',
+        message: 'Users retrieved successfully',
+        data: {
+          users: users, // List of users
+        },
+      })
+    } catch (error) {
+      // Handle any errors that occur during the process
+      return res.status(500).send({
+        status: 'failed',
+        message: 'Error retrieving users', // Message indicating error
+      })
+    }
+  }
+
   // Method to get a user's profile
   static getUser = async (req, res) => {
     if (!req.user) {
