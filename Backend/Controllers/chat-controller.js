@@ -111,6 +111,9 @@ class ChatController {
       const allParticipantNames = await ChatHelpers.getParticipantNames(
         allParticipants,
       )
+
+      const admin = await ChatHelpers.getUserById(userId)
+      // Create new chat
       const newChatGroup = await ChatHelpers.createChat({
         participants: allParticipants,
         isGroupChat: true,
@@ -118,6 +121,8 @@ class ChatController {
         bio: bio,
         participantsNames: allParticipantNames,
         profileImage: profileImage,
+        adminId: admin._id.toString(),
+        adminNames: admin.displayName,
       })
 
       return ChatHelpers.sendResponse(
