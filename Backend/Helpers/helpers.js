@@ -11,7 +11,9 @@ class ChatHelpers {
   static async getUserById(userId, userType = 'User') {
     const user = await UserSchema.findById(userId)
     if (!user) {
-      throw new Error(`${userType} Not Found`)
+      return res.status(404).send({
+        message: 'User Not Found',
+      })
     }
     return user
   }
@@ -88,6 +90,12 @@ class ChatHelpers {
       response.data = data
     }
     return res.status(statusCode).send(response)
+  }
+
+  static findChat = async (chatId) => {
+    // Find Chat
+    const chat = await ChatSchema.findById(chatId)
+    return chat
   }
 }
 

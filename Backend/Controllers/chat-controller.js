@@ -136,6 +136,74 @@ class ChatController {
       return ChatHelpers.sendResponse(res, 500, 'failure', error.message)
     }
   }
+
+  /**
+   * Add or remove participants in a group chat
+   */
+  static updateChatParticipants = async (req, res) => {
+    const userId = req.user.id
+    const { chatId } = req.params
+    const { participants, action } = req.body
+
+    if (!participants || !action) {
+      return ChatHelpers.sendResponse(
+        res,
+        400,
+        'failure',
+        'Invalid information',
+      )
+    }
+
+    if (!chatId) {
+      return ChatHelpers.sendResponse(
+        res,
+        400,
+        'failure',
+        'Chat ID is required',
+      )
+    }
+    const chat = await ChatHelpers.findChat(req.params.chatId)
+
+    // Find the chat
+    if (!chat) {
+      return ChatHelpers.sendResponse(res, 404, 'failure', 'No chat is found')
+    }
+
+    // // Check if the chat is a private chat
+    // if (chat.isGroupChat === false) {
+    //   return ChatHelpers.sendResponse(
+    //     res,
+    //     400,
+    //     'failure',
+    //     'You can only add/delete users in group chats',
+    //   )
+    // }
+
+    // if (!chat.adminId.toString() === userId) {
+    //   return ChatHelpers.sendResponse(
+    //     res,
+    //     400,
+    //     'failure',
+    //     'You are not the admin',
+    //   )
+    // }
+
+    // // Check if the participants exist or not
+    // const participantsId = await Promise.all(
+    //   participants.map(async (participant) => {
+    //     return await ChatHelpers.getUserById(participant)
+    //   }),
+    // )
+
+    // // Check if the user is already present in the group
+    // participantsId.filter((id) => !chat.participants.includes(id))
+
+    // const participantNames = await ChatHelpers.getParticipantNames(
+    //   participantsId,
+    // )
+
+    res.sendStatus(200)
+  }
 }
 
 export default ChatController
