@@ -140,11 +140,15 @@ class ChatController {
   /**
    * Add or remove participants in a group chat
    */
+  /**
+   * Add or remove participants in a group chat
+   */
   static updateChatParticipants = async (req, res) => {
     const userId = req.user.id
     const { chatId } = req.params
     const { participants, action } = req.body
 
+    // Validate input
     if (!participants || !action) {
       return ChatHelpers.sendResponse(
         res,
@@ -162,47 +166,112 @@ class ChatController {
         'Chat ID is required',
       )
     }
-    const chat = await ChatHelpers.findChat(req.params.chatId)
 
-    // Find the chat
-    if (!chat) {
-      return ChatHelpers.sendResponse(res, 404, 'failure', 'No chat is found')
+    try {
+      const chat = await ChatHelpers.findChat(chatId)
+
+      if (!chat) {
+        return ChatHelpers.sendResponse(res, 404, 'failure', 'Chat not found')
+      }
+
+      // Check if it's a group chat
+      if (!chat.isGroupChat) {
+        return ChatHelpers.sendResponse(
+          res,
+          400,
+          'failure',
+          'Cannot modify participants in a private chat',
+        )
+      }
+
+      // Ensure user is admin
+      if (chat.adminId.toString() !== userId) {
+        return ChatHelpers.sendResponse(
+          res,
+          403,
+          'failure',
+          'You are not authorized to modify participants in this group',
+        )
+      }
+
+      // Get participant details from the database
+      const participantUsers = await Promise.all(
+        participants.map(async (participantId) => {
+          const user = await ChatHelpers.getUserById(participantId)
+          return user
+            ? { id: user._id.toString(), name: user.displayName }
+            : null
+        }),
+      )
+
+      if (action === 'add') {
+        // Filter out already existing participants by ID
+        const newParticipants = participantUsers.filter(
+          (participant) =>
+            !chat.participants.some(
+              (existingId) => existingId === participant.id,
+            ),
+        )
+
+        // Add both IDs and names of new participants to the chat
+        chat.participants.push(...newParticipants.map((p) => p.id))
+        chat.participantsNames.push(...newParticipants.map((p) => p.name))
+        await chat.save()
+
+        return ChatHelpers.sendResponse(
+          res,
+          200,
+          'success',
+          'Participants added successfully',
+          chat,
+        )
+      } else if (action === 'delete') {
+        // Ensure only one user is being removed at a time
+        if (participants.length !== 1) {
+          return ChatHelpers.sendResponse(
+            res,
+            400,
+            'failure',
+            'Only one participant can be removed at a time',
+          )
+        }
+
+        const participantIdToRemove = participants[0]
+        const indexToRemove = chat.participants.indexOf(participantIdToRemove)
+
+        // Check if the participant exists in the group
+        if (indexToRemove === -1) {
+          return ChatHelpers.sendResponse(
+            res,
+            404,
+            'failure',
+            'Participant not found in this group chat',
+          )
+        }
+
+        // Remove the participant's ID and name from the chat
+        chat.participants.splice(indexToRemove, 1)
+        chat.participantsNames.splice(indexToRemove, 1)
+        await chat.save()
+
+        return ChatHelpers.sendResponse(
+          res,
+          200,
+          'success',
+          'Participant removed successfully',
+          chat,
+        )
+      } else {
+        return ChatHelpers.sendResponse(
+          res,
+          400,
+          'failure',
+          'Invalid action type',
+        )
+      }
+    } catch (error) {
+      return ChatHelpers.sendResponse(res, 500, 'failure', error.message)
     }
-
-    // // Check if the chat is a private chat
-    // if (chat.isGroupChat === false) {
-    //   return ChatHelpers.sendResponse(
-    //     res,
-    //     400,
-    //     'failure',
-    //     'You can only add/delete users in group chats',
-    //   )
-    // }
-
-    // if (!chat.adminId.toString() === userId) {
-    //   return ChatHelpers.sendResponse(
-    //     res,
-    //     400,
-    //     'failure',
-    //     'You are not the admin',
-    //   )
-    // }
-
-    // // Check if the participants exist or not
-    // const participantsId = await Promise.all(
-    //   participants.map(async (participant) => {
-    //     return await ChatHelpers.getUserById(participant)
-    //   }),
-    // )
-
-    // // Check if the user is already present in the group
-    // participantsId.filter((id) => !chat.participants.includes(id))
-
-    // const participantNames = await ChatHelpers.getParticipantNames(
-    //   participantsId,
-    // )
-
-    res.sendStatus(200)
   }
 }
 
