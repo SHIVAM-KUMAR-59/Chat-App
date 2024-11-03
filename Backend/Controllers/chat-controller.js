@@ -140,9 +140,6 @@ class ChatController {
   /**
    * Add or remove participants in a group chat
    */
-  /**
-   * Add or remove participants in a group chat
-   */
   static updateChatParticipants = async (req, res) => {
     const userId = req.user.id
     const { chatId } = req.params
