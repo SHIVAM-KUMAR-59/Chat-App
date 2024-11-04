@@ -145,9 +145,11 @@ This project still requires the completion of the following tasks. Track progres
   - [x] Implement Chat Routes
   - [x] Implement Message Routes
   - [x] Integrate socket.io
+  - [ ] Implement Real-Time User Updates
+  - [ ] Implement Real-time Messaging
 
 - [ ] Complete Frontend
-  - [ ] Integrate socket.io
+  - [x] Integrate socket.io
   - [ ] Implement Auth Pages
   - [ ] Implement Chat Pages
   - [ ] Implement Message Pages
