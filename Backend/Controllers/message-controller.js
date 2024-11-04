@@ -6,6 +6,7 @@ class MessageController {
     const { chatId, content, media, replyTo } = req.body
     const sender = req.user.id.toString()
 
+    // Check if the chatId is present
     if (!chatId) {
       return res.status(401).send({
         status: 'failure',
@@ -13,6 +14,7 @@ class MessageController {
       })
     }
 
+    // Check if an empty message is not being sent
     if ((!content || content === '') && !media) {
       return res.status(401).send({
         status: 'failure',
@@ -21,6 +23,7 @@ class MessageController {
     }
 
     try {
+      // Create a new message in the database
       const newMessage = await MessageSchema.create({
         chatId,
         sender,
@@ -35,6 +38,7 @@ class MessageController {
         data: newMessage,
       })
     } catch (error) {
+      // Send error message
       return res.status(401).send({
         status: 'failure',
         message: 'Error sending message',
