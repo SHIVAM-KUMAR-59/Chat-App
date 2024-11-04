@@ -131,6 +131,12 @@ This is a full-stack chat application that supports real-time messaging, user au
 
 4. Send messages, retrieve messages, and manage chats.
 
+## What next?
+
+- [ ] The boiler plate code for the project is ready.
+- [ ] Waiting for clearance from the UI/UX team to start the development.
+- [ ] The contact details of the project admin will be updated soon.
+
 ## 🔮 <a name="fututre-enhancements">Future Enhancements</a>
 
 1. **File Uploads**: Allow file sharing beyond just text messages.
