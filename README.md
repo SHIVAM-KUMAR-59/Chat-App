@@ -165,4 +165,4 @@ This repository is intended for personal learning, but if you find any issues or
 
 ## 👏 <a name="acknowledgement">Acknowledgments</a>
 
-A huge thank you to the expressjs community and various online resources that have been invaluable in my learning journey!
+A huge thank you to the [ExpressJs](https://expressjs.com), [ReactJs](https://react.dev) and [Socket.io](https://socket.io) communities and various online resources that have been invaluable in my learning journey!
