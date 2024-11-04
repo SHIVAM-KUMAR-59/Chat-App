@@ -37,17 +37,17 @@ io.on('connection', (socket) => {
 })
 
 // Simulating a client connection
-const simulateClientConnection = () => {
-  const clientSocket = ClientSocket('http://localhost:' + PORT) // Use the client socket to connect
+// const simulateClientConnection = () => {
+//   const clientSocket = ClientSocket('http://localhost:' + PORT) // Use the client socket to connect
 
-  clientSocket.on('connect', () => {
-    console.log('Simulated client connected')
-  })
+//   clientSocket.on('connect', () => {
+//     console.log('Simulated client connected')
+//   })
 
-  clientSocket.on('disconnect', () => {
-    console.log('Simulated client disconnected')
-  })
-}
+//   clientSocket.on('disconnect', () => {
+//     console.log('Simulated client disconnected')
+//   })
+// }
 
 simulateClientConnection() // Call the function to simulate client connection
 

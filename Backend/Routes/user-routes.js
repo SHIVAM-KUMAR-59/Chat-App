@@ -35,7 +35,7 @@ route.get('/api/user', UserController.getAllUsers)
 // Get a particular User Route
 route.get('/api/user/:username', verifyToken, UserController.getUser)
 
-// Toggle activate and deactivate user
+// Toggle activate and deactivate user without actually deleting it from database
 route.patch(
   '/api/user/:username/deactivate',
   UserController.toggleUserActivation,

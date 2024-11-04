@@ -66,7 +66,6 @@ class UserController {
         expiresIn: process.env.JWT_EXPIRE_TIME, // Set expiration time from environment variable
       },
     )
-    console.log(token)
 
     // Check if the token was successfully generated
     if (token) {
@@ -209,7 +208,6 @@ class UserController {
     const { displayName, email, bio, profileImage } = req.body
 
     const id = req.user._id.toString() // Get the user ID from the request
-    console.log(id)
 
     // Check if any data is provided
     if (!displayName && !email && !bio && !profileImage) {

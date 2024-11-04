@@ -1,6 +1,7 @@
 import ChatSchema from '../Schemas/ChatSchema.js'
 import UserSchema from '../Schemas/UserSchema.js'
 
+// Class of helper functions
 class ChatHelpers {
   /**
    * Get user details by ID

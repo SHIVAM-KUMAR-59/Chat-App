@@ -131,7 +131,6 @@ export const verifyPassword = async (req, res, next) => {
     next()
   } catch (error) {
     // Handle any errors that occur during password verification
-    console.log(error.message)
     return res
       .status(500)
       .json({ status: 'failed', message: 'Error verifying password', error })
@@ -153,7 +152,6 @@ export const verifyToken = async (req, res, next) => {
   }
 
   const token = header
-  console.log(token)
 
   // Check if the token was successfully extracted from the header
   if (!token) {

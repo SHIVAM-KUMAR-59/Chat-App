@@ -13,7 +13,7 @@ route.post('/api/chat/private', ChatController.createPrivateChat)
 // Route to create a group chat
 route.post('/api/chat/group', ChatController.createGroupChat)
 
-// Route to add or remove participants in a group chat
+// Route to add or remove participants in a group chat by chatId
 route.patch(
   '/api/chat/group/:chatId/participants',
   ChatController.updateChatParticipants,

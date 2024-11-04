@@ -1,10 +1,10 @@
 import ChatHelpers from '../Helpers/helpers.js'
 
-/**
+/*
  * Controller class for handling chat-related operations
  */
 class ChatController {
-  /**
+  /*
    * Create a private chat between two users
    */
   static createPrivateChat = async (req, res) => {
@@ -62,7 +62,7 @@ class ChatController {
     }
   }
 
-  /**
+  /*
    * Create a group chat
    */
   static createGroupChat = async (req, res) => {
@@ -137,7 +137,7 @@ class ChatController {
     }
   }
 
-  /**
+  /*
    * Add or remove participants in a group chat
    */
   static updateChatParticipants = async (req, res) => {

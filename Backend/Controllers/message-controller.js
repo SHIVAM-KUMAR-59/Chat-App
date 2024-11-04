@@ -1,5 +1,6 @@
 import MessageSchema from '../Schemas/MessageSchema.js'
 
+// Class to handle messages
 class MessageController {
   // Method to send messages
   static sendMessage = async (req, res) => {

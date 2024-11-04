@@ -10,7 +10,7 @@ route.use(verifyToken)
 // Route to send messages
 route.post('/api/messages', MessageController.sendMessage)
 
-// Route to get all messages of a chat
+// Route to get all messages of a chat by chatId
 route.get('/api/messages/:chatId', MessageController.getMessages)
 
 // Route to delete a message

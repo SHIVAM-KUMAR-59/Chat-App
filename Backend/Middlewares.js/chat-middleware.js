@@ -14,7 +14,6 @@ export const verifyToken = async (req, res, next) => {
   }
 
   const token = header
-  console.log(token)
 
   if (!token) {
     return res.status(401).send({
