@@ -76,6 +76,51 @@ class MessageController {
       })
     }
   }
+
+  // Method to delete a message
+  static deleteMessage = async (req, res) => {
+    const { messageId } = req.params
+
+    if (!messageId) {
+      return res.status(401).send({
+        status: 'failure',
+        message: 'MessageId is required',
+      })
+    }
+
+    try {
+      // Find message from the database
+      const message = await MessageSchema.findById(messageId)
+      // Check if message is present
+      if (!message) {
+        return res.status(401).send({
+          status: 'failure',
+          message: 'Message not found',
+        })
+      }
+
+      // Check if the person deleting is the one who sent the message
+      if (message.sender.toString() !== req.user.id.toString()) {
+        return res.status(401).send({
+          status: 'failure',
+          message: 'You are not authorized to delete this message',
+        })
+      }
+
+      // Delete the message
+      await MessageSchema.findByIdAndDelete(messageId)
+
+      res.status(200).send({
+        status: 'success',
+        message: 'Message was deleted successfully',
+      })
+    } catch (error) {
+      return res.status(500).send({
+        status: 'failure',
+        message: 'Error deleting message',
+      })
+    }
+  }
 }
 
 export default MessageController
