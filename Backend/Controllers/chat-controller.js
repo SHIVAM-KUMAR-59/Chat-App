@@ -206,7 +206,8 @@ class ChatController {
         const newParticipants = participantUsers.filter(
           (participant) =>
             !chat.participants.some(
-              (existingId) => existingId === participant.id,
+              (existingId) =>
+                existingId.toString() === participant.id.toString(),
             ),
         )
 
