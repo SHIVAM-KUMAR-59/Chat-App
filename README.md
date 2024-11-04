@@ -55,9 +55,11 @@ This is a full-stack chat application that supports real-time messaging, user au
 
 ### Message Endpoints
 
-| URL             | Method | Endpoint      |
-| --------------- | ------ | ------------- |
-| `/api/messages` | `POST` | Send Messages |
+| URL                        | Method   | Endpoint                   |
+| -------------------------- | -------- | -------------------------- |
+| `/api/messages`            | `POST`   | Send Messages              |
+| `/api/messages/:chatId`    | `GET`    | Get All Messages of a Chat |
+| `/api/messages/:messageId` | `DELETE` | Delete a Message           |
 
 ## Installation
 
