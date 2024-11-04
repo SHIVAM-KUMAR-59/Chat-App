@@ -1,8 +1,25 @@
-# Chat App
+# 💬 Chat App
 
 This is a full-stack chat application that supports real-time messaging, user authentication, and both one-on-one and group chats. The app is built using Node.js, Express, MongoDB for the backend, and utilizes WebSocket for real-time communication.
 
-## Features
+## 📜 Contents
+
+- [✨ Features](#✨-features)
+- [💻 Tech Stack](#💻-tech-stack)
+  - [🔧 Backend](#🔧-backend)
+  - [🌐 Frontend](#🌐-frontend)
+- [📚 API Endpoints](#📚-api-endpoints)
+  - [🔐 Auth Endpoints](#🔐-auth-endpoints)
+  - [👤 User Endpoints](#👤-user-endpoints)
+  - [💬 Chat Endpoints](#💬-chat-endpoints)
+  - [📩 Message Endpoints](#📩-message-endpoints)
+- [⚙️ Installation](#️⚙️-installation)
+- [🚀 Usage](#🚀-usage)
+- [🔮 Future Enhancements](#🔮-future-enhancements)
+- [🤝 Contributing](#🤝-contributing)
+- [👏 Acknowledgments](#👏-acknowledgments)
+
+## ✨ <a name="features">Features</a>
 
 - **User Authentication**: Secure sign-up and login functionality.
 - **One-on-One Chat**: Private conversations between two users.
@@ -10,9 +27,9 @@ This is a full-stack chat application that supports real-time messaging, user au
 - **Real-time Messaging**: Instant messaging powered by WebSocket.
 - **Media Sharing**: Send and receive images or other media files.
 
-## Tech Stack
+## 💻 <a name="tech-stack">Tech Stack</a>
 
-### Backend
+### 🔧 <a name="backend">Backend</a>
 
 - **Node.js**: Server runtime.
 - **Express**: Web framework for Node.js.
@@ -20,22 +37,22 @@ This is a full-stack chat application that supports real-time messaging, user au
 - **Mongoose**: MongoDB ODM for schema and model management.
 - **WebSocket**: Real-time communication.
 
-### Frontend
+### 🌐 <a name="frontend">Frontend</a>
 
 - **React**: For user interface.
 - **Socket.IO**: Real-time updates for the chat interface.
 - **Tailwind CSS**: For styling.
 
-## API Endpoints
+## 📚 <a name="api-endpoints">API Endpoints</a>
 
-### Auth Endpoints
+### 🔐 <a name="auth-endpoints">Auth Endpoints</a>
 
 | URL                  | Method | Endpoint      |
 | -------------------- | ------ | ------------- |
 | `/api/auth/register` | `POST` | Register User |
 | `/api/auth/login`    | `POST` | Login User    |
 
-### User Endpoints
+### 👤 <a name="user-endpoints">User Endpoints</a>
 
 | URL                              | Method   | Endpoint                                       |
 | -------------------------------- | -------- | ---------------------------------------------- |
@@ -45,7 +62,7 @@ This is a full-stack chat application that supports real-time messaging, user au
 | `/api/user/:username`            | `PATCH ` | Update User (change any field except password) |
 | `/api/user/:username`            | `DELETE` | Delete User                                    |
 
-### Chat Endpoints
+### 💬 <a name="chat-endpoints">Chat Endpoints</a>
 
 | URL                                    | Method  | Endpoint                              |
 | -------------------------------------- | ------- | ------------------------------------- |
@@ -53,7 +70,7 @@ This is a full-stack chat application that supports real-time messaging, user au
 | `/api/chat/group`                      | `POST ` | Create a Group Chat                   |
 | `/api/chat/group/:chatId/participants` | `PATCH` | Add/Remove participants in Group Chat |
 
-### Message Endpoints
+### 📩 <a name="message-endpoints">Message Endpoints</a>
 
 | URL                        | Method   | Endpoint                   |
 | -------------------------- | -------- | -------------------------- |
@@ -61,7 +78,7 @@ This is a full-stack chat application that supports real-time messaging, user au
 | `/api/messages/:chatId`    | `GET`    | Get All Messages of a Chat |
 | `/api/messages/:messageId` | `DELETE` | Delete a Message           |
 
-## Installation
+## ⚙️ <a name="installation">Installation</a>
 
 1. Clone the repository:
 
@@ -104,7 +121,7 @@ This is a full-stack chat application that supports real-time messaging, user au
 
 6. Your backend server will be running on: `http://localhost:8000` and your frontend server will be running on: `http://localhost:3000`
 
-## Usage
+## 🚀 <a name="Usage">Usage</a>
 
 1. **Register** a new user by sending a `POST `request to `/api/auth/register.`
 
@@ -114,13 +131,13 @@ This is a full-stack chat application that supports real-time messaging, user au
 
 4. Send messages, retrieve messages, and manage chats.
 
-## Future Enhancements
+## 🔮 <a name="fututre-enhancements">Future Enhancements</a>
 
 1. **File Uploads**: Allow file sharing beyond just text messages.
 2. **Message Reactions**: React to messages with emojis.
 3. **Push Notifications**: Notify users when they receive a new message.
 
-## Contributing ✨
+## 🤝 <a name="contributing">Contributing</a>
 
 This repository is intended for personal learning, but if you find any issues or have suggestions for improvement, feel free to open an issue or submit a pull request!
 
@@ -146,6 +163,6 @@ This repository is intended for personal learning, but if you find any issues or
 
 5. Open a pull request, and I'll review your contribution!
 
-## Acknowledgments 👏
+## 👏 <a name="acknowledgement">Acknowledgments</a>
 
-A huge thank you to the community and various online resources that have been invaluable in my learning journey!
+A huge thank you to the expressjs community and various online resources that have been invaluable in my learning journey!
