@@ -119,7 +119,7 @@ This is a full-stack chat application that supports real-time messaging, user au
    npm run dev
    ```
 
-6. Your backend server will be running on: `http://localhost:8000` and your frontend server will be running on: `http://localhost:3000`
+6. Your backend server will be running on: `http://localhost:8000` and your frontend server will be running on: `http://localhost:5173`
 
 ## 🚀 <a name="Usage">Usage</a>
 
