@@ -9,7 +9,6 @@ This is a full-stack chat application that supports real-time messaging, user au
 - **Group Chat**: Create groups, add participants, and send messages to multiple people.
 - **Real-time Messaging**: Instant messaging powered by WebSocket.
 - **Media Sharing**: Send and receive images or other media files.
-- **User Status**: See when users are online/offline.
 
 ## Tech Stack
 
@@ -21,7 +20,7 @@ This is a full-stack chat application that supports real-time messaging, user au
 - **Mongoose**: MongoDB ODM for schema and model management.
 - **WebSocket**: Real-time communication.
 
-### Frontend (Not included here but if applicable)
+### Frontend
 
 - **React**: For user interface.
 - **Socket.IO**: Real-time updates for the chat interface.
