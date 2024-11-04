@@ -123,7 +123,7 @@ This is a full-stack chat application that supports real-time messaging, user au
 
 ## 🚀 <a name="Usage">Usage</a>
 
-1. **Register** a new user by sending a `POST `request to `/api/auth/register.`
+1. **Register** a new user by sending a `POST` request to `/api/auth/register.`
 
 2. **Login** to get a JWT token, which will be used for authorization in further requests.
 
