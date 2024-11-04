@@ -137,6 +137,9 @@ This project still requires the completion of the following tasks. Track progres
 
 - [ ] Complete Backend.
 
+  - [x] Implement User Schema
+  - [x] Implement Chat Schema
+  - [x] Implement Message Schema
   - [x] Implement Auth Routes
   - [x] Implement User Routes
   - [x] Implement Chat Routes
