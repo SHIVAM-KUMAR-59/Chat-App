@@ -131,11 +131,24 @@ This is a full-stack chat application that supports real-time messaging, user au
 
 4. Send messages, retrieve messages, and manage chats.
 
-## What next?
+## Remaining Project Tasks
 
-- [ ] The boiler plate code for the project is ready.
-- [ ] Waiting for clearance from the UI/UX team to start the development.
-- [ ] The contact details of the project admin will be updated soon.
+This project still requires the completion of the following tasks. Track progress by checking off tasks as they are completed.
+
+- [ ] Complete Backend.
+
+  - [x] Implement Auth Routes
+  - [x] Implement User Routes
+  - [x] Implement Chat Routes
+  - [x] Implement Message Routes
+  - [ ] Integrate socket.io
+
+- [ ] Complete Frontend
+  - [ ] Integrate socket.io
+  - [ ] Implement Auth Pages
+  - [ ] Implement Chat Pages
+  - [ ] Implement Message Pages
+  - [ ] Implement Responsive Design
 
 ## 🔮 <a name="fututre-enhancements">Future Enhancements</a>
 
