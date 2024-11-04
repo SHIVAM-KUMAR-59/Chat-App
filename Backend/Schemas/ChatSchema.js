@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-// Define the schema for a Chat, which includes both one-on-one and group chats
+// Define the schema for a Chat, which includes both one-on-one and group chats.
 const ChatSchema = new mongoose.Schema(
   {
     // Array of participant IDs (required for both one-on-one and group chats)

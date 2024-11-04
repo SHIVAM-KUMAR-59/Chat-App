@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-// Define schema for storing user data
+// Define schema for storing user data.
 const User = new mongoose.Schema(
   {
     // Unique username chosen by the user

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-// Define schema for storing messages in a chat
+// Define schema for storing messages in a chat.
 const MessageSchema = new mongoose.Schema(
   {
     // ID of the chat the message belongs to, referencing the Chat model
