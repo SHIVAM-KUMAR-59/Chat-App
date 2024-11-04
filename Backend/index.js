@@ -7,6 +7,7 @@ import http from 'http' // Import the HTTP module
 import { connectDB } from './config/configDB.js'
 import userRoutes from './Routes/user-routes.js'
 import chatRoutes from './Routes/chat-routes.js'
+import messageRoutes from './Routes/message-routes.js'
 import { io as ClientSocket } from 'socket.io-client' // Import the Socket.IO client
 
 dotenv.config()
@@ -53,6 +54,7 @@ simulateClientConnection() // Call the function to simulate client connection
 // Using the routes
 app.use(userRoutes)
 app.use(chatRoutes)
+app.use(messageRoutes)
 
 app.get('/', (req, res) => {
   res.send('Hello World')
