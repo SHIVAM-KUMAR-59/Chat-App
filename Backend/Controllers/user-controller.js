@@ -2,6 +2,7 @@ import UserSchema from '../Schemas/UserSchema.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
+// Class to handle all user activities
 class UserController {
   // Method to register a new user
   static resgisterUser = async (req, res) => {
