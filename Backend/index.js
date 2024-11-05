@@ -50,6 +50,11 @@ io.on('connection', (socket) => {
     socket.emit('connection_verified', { status: 'connected' })
   })
 
+  // Practice function
+  socket.on(`practice`, (data) => {
+    console.log(data), socket.emit('response', { data: data })
+  })
+
   socket.on('disconnect', () => {
     console.log(`User disconnected: ${socket.id}`)
   })

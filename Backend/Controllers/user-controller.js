@@ -137,20 +137,19 @@ class UserController {
   // Method to Toggle between user's activation and deactivation
   static toggleUserActivation = async (req, res) => {
     const { username } = req.params
-
     const { password } = req.body
 
     if (!username) {
-      return res.status(404).send({
+      return res.status(400).json({
         status: 'failed',
-        message: 'Username required!', // Message indicating user not found
+        message: 'Username required!',
       })
     }
 
     if (!password) {
-      return res.status(404).send({
+      return res.status(400).json({
         status: 'failed',
-        message: 'Password required!', // Message indicating password not found
+        message: 'Password required!',
       })
     }
 
@@ -158,7 +157,6 @@ class UserController {
       // Find the user by username
       const user = await UserSchema.findOne({ username: username })
 
-      // If user is not found, send a 404 response
       if (!user) {
         return res.status(404).json({
           status: 'failed',
@@ -175,29 +173,41 @@ class UserController {
       }
 
       // Toggle the isDeactivated field
+      const isDeactivating = !user.isDeactivated
       const updatedUser = await UserSchema.findOneAndUpdate(
         { username: user.username },
-        { isDeactivated: !user.isDeactivated }, // Toggle the isDeactivated state
+        { isDeactivated: isDeactivating },
         {
-          new: true, // Return the updated document
-          runValidators: true, // Run validation on the update
+          new: true,
+          runValidators: true,
         },
       )
 
-      // Successful response
+      // If deactivating the user, remove them from all groups
+      if (isDeactivating) {
+        await ChatSchema.updateMany(
+          { participants: user._id },
+          {
+            $pull: {
+              participants: user._id,
+              participantsNames: user.displayName,
+            },
+          },
+        )
+      }
+
       res.status(200).json({
         status: 'success',
-        message: updatedUser.isDeactivated
-          ? 'User deactivated successfully'
+        message: isDeactivating
+          ? 'User deactivated successfully and removed from all groups'
           : 'User activated successfully',
         user: updatedUser,
       })
     } catch (error) {
-      // Handle any errors
       res.status(500).json({
         status: 'error',
         message: 'Error toggling user activation',
-        error,
+        error: error.message,
       })
     }
   }
@@ -206,8 +216,7 @@ class UserController {
   static updateUser = async (req, res) => {
     // Destructure the data from the request body
     const { displayName, email, bio, profileImage } = req.body
-
-    const id = req.user._id.toString() // Get the user ID from the request
+    const userId = req.user._id.toString() // Get the user ID from the request
 
     // Check if any data is provided
     if (!displayName && !email && !bio && !profileImage) {
@@ -220,21 +229,9 @@ class UserController {
     try {
       // Find the user and update the specified fields
       const user = await UserSchema.findByIdAndUpdate(
-        id, // Find user by user id directly
-        {
-          $set: {
-            // Fields to update
-            displayName,
-            email,
-            bio,
-            profileImage,
-          },
-        },
-        {
-          // Options for the update operation
-          new: true, // Return the updated document
-          runValidators: true, // Run validation on the update
-        },
+        userId,
+        { $set: { displayName, email, bio, profileImage } },
+        { new: true, runValidators: true },
       )
 
       // Check if the user was found and updated
@@ -244,6 +241,23 @@ class UserController {
           message: 'User not found',
         })
       }
+
+      // Update user information in all chats they are a part of
+      await ChatSchema.updateMany(
+        { participants: userId },
+        {
+          $set: {
+            'participantsNames.$[elem]': displayName, // Update displayName in participantsNames array
+          },
+          ...(profileImage && {
+            'participantsProfileImages.$[elem]': profileImage, // If profileImage exists, update it
+          }),
+        },
+        {
+          arrayFilters: [{ 'elem._id': userId }],
+          multi: true,
+        },
+      )
 
       // Successful response
       res.status(200).json({
@@ -263,21 +277,30 @@ class UserController {
 
   // Method to delete a user from the database
   static deleteUser = async (req, res) => {
-    const id = req.user._id.toString()
+    const userId = req.user._id.toString()
 
     try {
       // Find the user and delete it
-      const user = await UserSchema.findByIdAndDelete(id)
+      const user = await UserSchema.findByIdAndDelete(userId)
       if (!user) {
         return res.status(404).json({
           status: 'failed',
           message: 'User not found',
         })
       }
+
+      // Remove user from all chats they are a part of
+      await ChatSchema.updateMany(
+        { participants: userId },
+        {
+          $pull: { participants: userId, participantsNames: user.displayName },
+        },
+      )
+
       // Successful response
       res.status(200).json({
         status: 'success',
-        message: 'User deleted successfully',
+        message: 'User deleted successfully from system and all chats',
       })
     } catch (error) {
       // Handle any errors that occur during the deletion
