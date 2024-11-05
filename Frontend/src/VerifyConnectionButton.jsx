@@ -1,4 +1,3 @@
-// VerifyConnectionButton.js
 import React, { useEffect } from 'react'
 import { io } from 'socket.io-client'
 
