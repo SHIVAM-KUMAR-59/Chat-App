@@ -1,4 +1,5 @@
-import VerifyConnectionButton from './VerifyConnectionButton.jsx'
+import React from 'react'
+import VerifyConnectionButton from './VerifyConnectionButton'
 
 function App() {
   return (
