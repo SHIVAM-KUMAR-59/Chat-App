@@ -138,45 +138,45 @@ This is a full-stack chat application that supports real-time messaging, user au
 project-root
 ├── Backend
 │   ├── config
-│   │   └── configDB.js # MongoDB Configuration
+│   │   └── configDB.js           # MongoDB connection settings.
 │   ├── Controllers
-│   │   ├── chat-controller.js     #  Handles chat-related operations
-│   │   ├── message-controller.js  # Handles message-related operations
-│   │   ├── socket-controller.js   # Handles socket.io-related operations
-│   │   ├── user-controller.js     # Handles user-related operations
+│   │   ├── chat-controller.js     # Manages chat operations.
+│   │   ├── message-controller.js  # Manages message operations.
+│   │   ├── socket-controller.js   # Manages WebSocket events.
+│   │   ├── user-controller.js     # Manages user operations.
 │   └── Helpers
-│   │   ├── helpers.js # Helper functions for various operations
+│   │   └── helpers.js             # Reusable utility functions.
 │   └── Middlewares
-│   │   ├── auth-middleware.js # Middlewares for authentication and authorization
-│   │   ├── chat-middleware.js # Middlewares for chat operations
+│   │   ├── auth-middleware.js     # Authentication middleware.
+│   │   ├── chat-middleware.js     # Middleware for chat permissions.
 │   └── Routes
-│   │   ├── chat-routes.js    # Routes for chat handling
-│   │   ├── message-routes.js # Routes for message handling
-│   │   ├── user-routes.js    # Routes for user handling
+│   │   ├── chat-routes.js         # Chat routes.
+│   │   ├── message-routes.js      # Message routes.
+│   │   ├── user-routes.js         # User routes.
 │   └── Schemas
-│   │   ├── ChatSchema.js    # Schema for the chat (group and private)
-│   │   ├── MessageSchema.js # Schema for messages
-│   │   ├── UserSchema.js    # Schema for users
-│   └── index.js  # Main entry point for the backend server
-│   └── package-lock.json
-│   └── package.json
+│   │   ├── ChatSchema.js          # Defines chat schema.
+│   │   ├── MessageSchema.js       # Defines message schema.
+│   │   └── UserSchema.js          # Defines user schema.
+│   └── index.js                   # Entry point for backend server.
+│   └── package-lock.json          # Locks backend dependencies.
+│   └── package.json               # Backend project metadata.
 ├── Frontend
-│   └── public
+│   └── public                     # Static assets.
 │   └── src
-│   │   ├── assets
-│   │   ├── App.jsx
-│   │   ├── index.css
-│   │   ├── main.js
-│   │   ├── VerifyConnection.jsx
-│   └── eslint.config.js
-│   └── index.html
-│   └── package-lock.json
-│   └── package.json
-│   └── postcss.config.js
-│   └── tailwind.config.js
-│   └── vite.config.js
-├── .gitignore
-└── README.md
+│   │   ├── assets                 # Static files (e.g., images).
+│   │   ├── App.jsx                # Main app component.
+│   │   ├── index.css              # Global styles.
+│   │   ├── main.jsx               # Frontend entry point.
+│   │   └── VerifyConnection.jsx   # Checks socket connection.
+│   └── eslint.config.js           # ESLint rules.
+│   └── index.html                 # HTML template.
+│   └── package-lock.json          # Locks frontend dependencies.
+│   └── package.json               # Frontend project metadata.
+│   └── postcss.config.js          # PostCSS settings.
+│   └── tailwind.config.js         # Tailwind CSS config.
+│   └── vite.config.js             # Vite build settings.
+├── .gitignore                     # Git ignore rules.
+└── README.md                      # Project overview and setup.
 
 ```
 
