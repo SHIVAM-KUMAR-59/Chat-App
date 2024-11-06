@@ -184,36 +184,36 @@ project-root
 
 This project still requires the completion of the following tasks. Track progress by checking off tasks as they are completed.
 
-- ~~Step 1~~:
+- Step 1 ✅:
 
-  - [x] ~~Implement User Schema~~
-  - [x] ~~Implement Chat Schema~~
-  - [x] ~~Implement Message Schema~~
+- [x] Implement User Schema
+- [x] Implement Chat Schema
+- [x] Implement Message Schema
 
-- ~~Step 2~~:
+- Step 2 ✅:
 
-  - [x] ~~Implement Auth Routes~~
-  - [x] ~~Implement User Routes~~
-  - [x] ~~Implement Chat Routes~~
-  - [x] ~~Implement Message Routes~~
+- [x] Implement Auth Routes
+- [x] Implement User Routes
+- [x] Implement Chat Routes
+- [x] Implement Message Routes
 
-- ~~Step 3~~:
+- Step 3 ✅:
 
-  - [x] ~~Integrate socket.io (Backend)~~
-  - [x] ~~Integrate socket.io (Frontend)~~
+- [x] Integrate socket.io (Backend)
+- [x] Integrate socket.io (Frontend)
 
-- Step 4:
+- Step 4 [ ]:
 
   - [ ] Implement Login/Register Pages
   - [ ] Implement Chat Pages
 
-- Step 5:
+- Step 5 [ ]:
 
   - [ ] Implement Real-time Messaging (Backend)
   - [ ] Implement Real-time Messaging (Frontend)
   - [ ] Implement Messaging
 
-- Step 6:
+- Step 6 [ ]:
   - [ ] Implement Responsive Design
 
 ## 🔮 <a name="fututre-enhancements">Future Enhancements</a>
