@@ -137,21 +137,21 @@ This project still requires the completion of the following tasks. Track progres
 
 - ~~Step 1~~:
 
-  - [x] Implement User Schema
-  - [x] Implement Chat Schema
-  - [x] Implement Message Schema
+  - [x] ~~Implement User Schema~~
+  - [x] ~~Implement Chat Schema~~
+  - [x] ~~Implement Message Schema~~
 
 - ~~Step 2~~:
 
-  - [x] Implement Auth Routes
-  - [x] Implement User Routes
-  - [x] Implement Chat Routes
-  - [x] Implement Message Routes
+  - [x] ~~Implement Auth Routes~~
+  - [x] ~~Implement User Routes~~
+  - [x] ~~Implement Chat Routes~~
+  - [x] ~~Implement Message Routes~~
 
 - ~~Step 3~~:
 
-  - [x] Integrate socket.io (Backend)
-  - [x] Integrate socket.io (Frontend)
+  - [x] ~~Integrate socket.io (Backend)~~
+  - [x] ~~Integrate socket.io (Frontend)~~
 
 - Step 4:
 
