@@ -162,7 +162,7 @@ This project still requires the completion of the following tasks. Track progres
 
   - [ ] Implement Real-time Messaging (Backend)
   - [ ] Implement Real-time Messaging (Frontend)
-  - [ ] Implement Messages
+  - [ ] Implement Messaging
 
 - Step 6:
   - [ ] Implement Responsive Design
