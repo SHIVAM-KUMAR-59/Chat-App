@@ -95,7 +95,7 @@ This is a full-stack chat application that supports real-time messaging, user au
    npm install
    ```
 
-3. Install Frontent Dependencies (make sure you are in the roo directory before doing this):
+3. Install Frontent Dependencies (make sure you are in the root directory before doing this):
 
    ```bash
    cd Frontend
