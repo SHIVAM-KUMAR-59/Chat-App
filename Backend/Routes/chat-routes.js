@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { verifyToken } from '../Middlewares.js/chat-middleware.js'
+import { verifyToken } from '../Middlewares/chat-middleware.js'
 import ChatController from '../Controllers/chat-controller.js'
 
 const route = Router()

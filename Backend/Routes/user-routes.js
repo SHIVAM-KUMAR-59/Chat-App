@@ -6,7 +6,7 @@ import {
   generatePassword,
   verifyPassword,
   verifyToken,
-} from '../Middlewares.js/auth-middleware.js'
+} from '../Middlewares/auth-middleware.js'
 import UserController from '../Controllers/user-controller.js'
 
 const route = Router()

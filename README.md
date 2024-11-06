@@ -15,6 +15,7 @@ This is a full-stack chat application that supports real-time messaging, user au
   - [📩 Message Endpoints](#📩-message-endpoints)
 - [⚙️ Installation](#️⚙️-installation)
 - [🚀 Usage](#🚀-usage)
+- [🗼 Project Structure](#🗼-project-structure)
 - [🔮 Future Enhancements](#🔮-future-enhancements)
 - [🤝 Contributing](#🤝-contributing)
 - [👏 Acknowledgments](#👏-acknowledgments)
@@ -130,6 +131,54 @@ This is a full-stack chat application that supports real-time messaging, user au
 3. Create **private** and **group** chats using the respective endpoints.
 
 4. Send messages, retrieve messages, and manage chats.
+
+## 🗼 <a name="project-structure">Project Structure</a>
+
+```bash
+project-root
+├── Backend
+│   ├── config # MongoDB Configuration
+│   │   └── configDB.js
+│   ├── Controllers
+│   │   ├── chat-controller.js     #  Handles chat-related operations
+│   │   ├── message-controller.js  # Handles message-related operations
+│   │   ├── socket-controller.js   # Handles socket.io-related operations
+│   │   ├── user-controller.js     # Handles user-related operations
+│   └── Helpers
+│   │   ├── helpers.js # Helper functions for various operations
+│   └── Middlewares
+│   │   ├── auth-middleware.js # Middlewares for authentication and authorization
+│   │   ├── chat-middleware.js # Middlewares for chat operations
+│   └── Routes
+│   │   ├── chat-routes.js    # Routes for chat handling
+│   │   ├── message-routes.js # Routes for message handling
+│   │   ├── user-routes.js    # Routes for user handling
+│   └── Schemas
+│   │   ├── ChatSchema.js    # Schema for the chat (group and private)
+│   │   ├── MessageSchema.js # Schema for messages
+│   │   ├── UserSchema.js    # Schema for users
+│   └── index.js  # Main entry point for the backend server
+│   └── package-lock.json
+│   └── package.json
+├── Frontend
+│   └── public
+│   └── src
+│   │   ├── assets
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   ├── main.js
+│   │   ├── VerifyConnection.jsx
+│   └── eslint.config.js
+│   └── index.html
+│   └── package-lock.json
+│   └── package.json
+│   └── postcss.config.js
+│   └── tailwind.config.js
+│   └── vite.config.js
+├── .gitignore
+└── README.md
+
+```
 
 ## Remaining Project Tasks
 
