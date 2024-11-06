@@ -68,7 +68,7 @@ This is a full-stack chat application that supports real-time messaging, user au
 | URL                                    | Method  | Endpoint                              |
 | -------------------------------------- | ------- | ------------------------------------- |
 | `/api/chat/private`                    | `POST`  | Create a Private Chat                 |
-| `/api/chat/group`                      | `POST ` | Create a Group Chat                   |
+| `/api/chat/group`                      | `POST`  | Create a Group Chat                   |
 | `/api/chat/group/:chatId/participants` | `PATCH` | Add/Remove participants in Group Chat |
 
 ### 📩 <a name="message-endpoints">Message Endpoints</a>
