@@ -137,8 +137,8 @@ This is a full-stack chat application that supports real-time messaging, user au
 ```bash
 project-root
 ├── Backend
-│   ├── config # MongoDB Configuration
-│   │   └── configDB.js
+│   ├── config
+│   │   └── configDB.js # MongoDB Configuration
 │   ├── Controllers
 │   │   ├── chat-controller.js     #  Handles chat-related operations
 │   │   ├── message-controller.js  # Handles message-related operations
