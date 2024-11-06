@@ -184,20 +184,20 @@ project-root
 
 This project still requires the completion of the following tasks. Track progress by checking off tasks as they are completed.
 
-- ✅ Step 1 :
+- [x] Step 1 :
 
 - [x] Implement User Schema
 - [x] Implement Chat Schema
 - [x] Implement Message Schema
 
-- ✅ Step 2 :
+- [x] Step 2 :
 
 - [x] Implement Auth Routes
 - [x] Implement User Routes
 - [x] Implement Chat Routes
 - [x] Implement Message Routes
 
-- ✅ Step 3 :
+- [x] Step 3 :
 
 - [x] Integrate socket.io (Backend)
 - [x] Integrate socket.io (Frontend)
