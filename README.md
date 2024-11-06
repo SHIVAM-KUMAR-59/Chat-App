@@ -60,7 +60,7 @@ This is a full-stack chat application that supports real-time messaging, user au
 | `/api/user`                      | `GET`    | Get all Users                                  |
 | `/api/user/:username`            | `GET`    | Get a particular User                          |
 | `/api/user/:username/deactivate` | `PATCH`  | Toggle activate and deactivate user            |
-| `/api/user/:username`            | `PATCH ` | Update User (change any field except password) |
+| `/api/user/:username`            | `PATCH`  | Update User (change any field except password) |
 | `/api/user/:username`            | `DELETE` | Delete User                                    |
 
 ### 💬 <a name="chat-endpoints">Chat Endpoints</a>
