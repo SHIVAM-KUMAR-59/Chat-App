@@ -135,20 +135,20 @@ This is a full-stack chat application that supports real-time messaging, user au
 
 This project still requires the completion of the following tasks. Track progress by checking off tasks as they are completed.
 
-- --Step 1--:
+- ~~Step 1~~:
 
   - [x] Implement User Schema
   - [x] Implement Chat Schema
   - [x] Implement Message Schema
 
-- --Step 2--:
+- ~~Step 2~~:
 
   - [x] Implement Auth Routes
   - [x] Implement User Routes
   - [x] Implement Chat Routes
   - [x] Implement Message Routes
 
-- --Step 3--:
+- ~~Step 3~~:
 
   - [x] Integrate socket.io (Backend)
   - [x] Integrate socket.io (Frontend)
