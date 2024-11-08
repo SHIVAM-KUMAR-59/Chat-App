@@ -4,21 +4,21 @@ This is a full-stack chat application that supports real-time messaging, user au
 
 ## 📜 Contents
 
-- [✨ Features](#✨-features)
-- [💻 Tech Stack](#💻-tech-stack)
-  - [🔧 Backend](#🔧-backend)
-  - [🌐 Frontend](#🌐-frontend)
-- [📚 API Endpoints](#📚-api-endpoints)
-  - [🔐 Auth Endpoints](#🔐-auth-endpoints)
-  - [👤 User Endpoints](#👤-user-endpoints)
-  - [💬 Chat Endpoints](#💬-chat-endpoints)
-  - [📩 Message Endpoints](#📩-message-endpoints)
-- [⚙️ Installation](#️⚙️-installation)
-- [🚀 Usage](#🚀-usage)
-- [🗼 Project Structure](#🗼-project-structure)
-- [🔮 Future Enhancements](#🔮-future-enhancements)
-- [🤝 Contributing](#🤝-contributing)
-- [👏 Acknowledgments](#👏-acknowledgments)
+- 1. [✨ Features](#✨-features)
+- 2. [💻 Tech Stack](#💻-tech-stack)
+  - 2.1 [🔧 Backend](#🔧-backend)
+  - 2.2 [🌐 Frontend](#🌐-frontend)
+- 3. [📚 API Endpoints](#📚-api-endpoints)
+  - 3.1 [🔐 Auth Endpoints](#🔐-auth-endpoints)
+  - 3.2 [👤 User Endpoints](#👤-user-endpoints)
+  - 3.3 [💬 Chat Endpoints](#💬-chat-endpoints)
+  - 3.4 [📩 Message Endpoints](#📩-message-endpoints)
+- 4. [⚙️ Installation](#️⚙️-installation)
+- 5. [🚀 Usage](#🚀-usage)
+- 6. [🗼 Project Structure](#🗼-project-structure)
+- 7. [🔮 Future Enhancements](#🔮-future-enhancements)
+- 8. [🤝 Contributing](#🤝-contributing)
+- 9. [👏 Acknowledgments](#👏-acknowledgments)
 
 ## ✨ <a name="features">Features</a>
 
