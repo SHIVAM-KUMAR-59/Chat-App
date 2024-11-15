@@ -1,10 +1,9 @@
-import React from 'react'
-import VerifyConnectionButton from './VerifyConnectionButton'
+import Auth from './Auth'
 
 function App() {
   return (
     <div className="App">
-      <VerifyConnectionButton />
+      <Auth />
     </div>
   )
 }
