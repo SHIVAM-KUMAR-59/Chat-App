@@ -204,7 +204,7 @@ This project still requires the completion of the following tasks. Track progres
 
 - [ ] Step 4:
 
-  - [ ] Implement Login/Register Pages
+  - [ ] Implement Login/Register Page
   - [ ] Implement Chat Pages
 
 - [ ] Step 5:
