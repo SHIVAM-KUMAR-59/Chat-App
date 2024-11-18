@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { io } from 'socket.io-client'
 
-const socket = io('http://localhost:8000') // Adjust URL if necessary
+const socket = io('http://localhost:8000')
 
 const VerifyConnectionButton = () => {
   useEffect(() => {
