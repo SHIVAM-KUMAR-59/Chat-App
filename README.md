@@ -93,6 +93,7 @@ This is a full-stack chat application that supports real-time messaging, user au
    ```bash
    cd Backend
    npm install
+   npm install nodemon # if you do not have nodemon installed globally
    ```
 
 3. Install Frontend Dependencies (make sure you are in the root directory before doing this):
