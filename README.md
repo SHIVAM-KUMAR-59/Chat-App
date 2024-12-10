@@ -20,7 +20,7 @@ This is a full-stack chat application that supports real-time messaging, user au
 - 8. [🤝 Contributing](#🤝-contributing)
 - 9. [👏 Acknowledgments](#👏-acknowledgments)
 
-## ✨ <a name="features">Features</a>
+## ✨ <a name="features">Features</a> 
 
 - **User Authentication**: Secure sign-up and login functionality.
 - **One-on-One Chat**: Private conversations between two users.
