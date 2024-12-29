@@ -2,6 +2,8 @@
 
 This is a full-stack chat application that supports real-time messaging, user authentication, and both one-on-one and group chats. The app is built using Node.js, Express, MongoDB for the backend, and utilizes WebSocket for real-time communication.
 
+---
+
 ## 📜 Contents
 
 - 1. [✨ Features](#✨-features)
